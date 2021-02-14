@@ -1,0 +1,28 @@
+.colorText{
+	color:green;
+}
+/*
+sirve para darle un estilo a la cabecera de la tabla
+*/
+.headerTable{
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 16px;
+}
+/*
+sirve para darle un estilo a las filas como por ejemplo un espacio para que no esten unidos 
+*/
+.rowTable{
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+/*
+sirve para poner un color entre la fila 
+*/
+.rowTableLine{
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
+}

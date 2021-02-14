@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<h:head>
+	<title>Principal</title>
+	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+
+
+</h:head>
+
+<h:body>
+
+bienvenidos pricipal
+<h:dataTable id="tblEmpleados" var="empleado"
+		value="#{principalController.empleados}" headerClass="headerTable" rowClasses="rowTable rowTableLine">
+
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			<h:outputText value="#{empleado.nombre}"></h:outputText>
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">Apellido</f:facet>
+			<h:outputText value="#{empleado.apellido}"></h:outputText>
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">Ciudad</f:facet>
+			<h:outputText value="#{empleado.ciudad}"></h:outputText>
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">Genero</f:facet>
+			<h:outputText value="#{empleado.genero}"></h:outputText>
+		</h:column>
+	</h:dataTable>
+
+
+</h:body>
+
+</html>
