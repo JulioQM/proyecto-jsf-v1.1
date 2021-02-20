@@ -12,33 +12,84 @@
 </h:head>
 
 <h:body>
+<p:outputLabel value="Bienvenidos #{sessionController.usuarioDTO.usuario} a la pantalla principal"/>
+	<h:form>
+	<p:commandButton value="Cerrar sesion" action="#{sessionClosedController.cerrarSession}"></p:commandButton>
+	<p:separator/>
+		<p:panel header="Lista de Empleados">
+					
+						<p:commandButton value="XLS" styleClass="p-mr-2 p-mb-2">
+							
+							<p:dataExporter type="xls" target="tblEmpleados"
+								fileName="ReportesEmpleados" />
+						</p:commandButton>
 
-<p:panel header="Lista de Empleados" >
-<p:dataTable id="tblEmpleados" var="empleado"
-		value="#{principalController.empleados}" headerClass="headerTable" rowClasses="rowTable rowTableLine">
+						<p:commandButton value="XLXS" styleClass="p-mr-2 p-mb-2">
+							<p:dataExporter type="xlsxstream" target="tblEmpleados"
+								fileName="ReportesEmpleados" />
+						</p:commandButton>
 
-		<p:column headerText="Nombre">
-			
-			<h:outputText value="#{empleado.nombre}"></h:outputText>
-		</p:column>
+						<p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2">
+							<p:dataExporter type="pdf" target="tblEmpleados"
+								fileName="ReportesEmpleados" />
+						</p:commandButton>
 
-		<p:column headerText="Apellido">
-			
-			<h:outputText value="#{empleado.apellido}"></h:outputText>
-		</p:column>
+						<p:commandButton value="CSV" styleClass="p-mr-2 p-mb-2">
+							<p:dataExporter type="csv" target="tblEmpleados"
+								fileName="ReportesEmpleados" />
+						</p:commandButton>
 
-		<p:column  headerText="Ciudad">
-		
-			<h:outputText value="#{empleado.ciudad}"></h:outputText>
-		</p:column>
+						<p:commandButton value="XML" styleClass="p-mr-2 p-mb-2">
+							<p:dataExporter type="xml" target="tblEmpleados"
+								fileName="ReportesEmpleados" />
+						</p:commandButton>
 
-		<h:column headerClass="Genero">
-			
-			<h:outputText value="#{empleado.genero}"></h:outputText>
-		</h:column>
-	</p:dataTable>
-</p:panel>
+						<p:commandButton value="TXT" styleClass="p-mr-2 p-mb-2">
+							<p:dataExporter type="txt" target="tblEmpleados"
+								fileName="ReportesEmpleados" />
+						</p:commandButton>
+					
+				
+			<p:dataTable id="tblEmpleados" var="empleado"
+				value="#{principalController.empleados}" paginator="true" rows="10"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+				currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+				rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+				emptyMessage="No se encontraron registros" reflow="true"
+				filteredValue="#{principalController.listaEmpleadosFiltrados}">
 
+				
+
+				<p:column headerText="Nombre" filterBy="#{empleado.nombre}"
+					filterMatchMode="contains" sortBy="#{empleado.nombre}">
+
+					<h:outputText value="#{empleado.nombre}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Apellido" sortBy="#{empleado.apellido}">
+
+					<h:outputText value="#{empleado.apellido}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Ciudad">
+
+					<h:outputText value="#{empleado.ciudad}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Genero">
+
+					<h:outputText value="#{empleado.genero}"></h:outputText>
+				</p:column>
+
+
+
+			</p:dataTable>
+
+
+
+		</p:panel>
+
+	</h:form>
 </h:body>
 
 </html>
