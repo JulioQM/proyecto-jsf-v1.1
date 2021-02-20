@@ -1,31 +1,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 
 <h:head>
 	<title>Login</title>
 	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--meta name="viewport" 			content="width=device-width, initial-scale=1,shrink-to-fit=no, user-scalable=no" -->
 </h:head>
 
+<!--  columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4" sirve para hacer responsivo cualquiera de las dos sirve  columnClasses="ui-g-12 ui-md-2,ui-g-12 ui-md-4,ui-g-12 ui-md-2,ui-g-12 ui-md-4"-->
 <h:body>
+	<div class="ui-fluid" >
+		<h:form id="formLogin"    >
+			<p:growl id="growl" />
+			<p:panel id="pnlLogin" header="Inicio de sesión"
+				style="text-align:center;" >
+				<p:graphicImage name="img/user.png" width="20%" />
 
-	<h:form id="formLogin">
-		<h:panelGrid columns="2">
+				<p:panelGrid id="pnlGridLogin" columns="2"
+					columnClasses="ui-g-12 ui-md-12,ui-g-12 ui-md-12" layout="grid"
+					styleClass="ui-panelgrid-blank ui-fluid " style="width:80%;margin:0 auto;">
+					
+						<p:outputLabel value="Usuario:" styleClass="colorText"
+							for="txtUsuario" ></p:outputLabel>
+						<p:inputText id="txtUsuario" value="#{loginController.usuario}"
+							required="true" requiredMessage="El usuario es requerido"
+							placeholder="Ingrese el usuario"></p:inputText>
 
-			<h:outputLabel value="Usuario: *" styleClass="colorText"></h:outputLabel>
-			<h:inputText id="txtUsuario" value="#{loginController.usuario}"
-				required="true" requiredMessage="El usuario es requerido"></h:inputText>
+						<p:outputLabel value="Contraseña:" styleClass="colorText"
+							for="txtPassword" ></p:outputLabel>
+						<p:password id="txtPassword" value="#{loginController.password}"
+							required="true" requiredMessage="La contraseña es requerida"
+							placeholder="Ingrese la contraseña" ></p:password>
+						<!-- este componente me ayudara a guarda un espacio en mi columan de 2 y ayudara a poner el boton en la siguiente columna ,aunque no es necesario-->
 
-			<h:outputLabel value="Contraseña: *" styleClass="colorText" ></h:outputLabel>
-			<h:inputSecret id="txtPassword" value="#{loginController.password}"
-				required="true" requiredMessage="La contraseña es requerida"></h:inputSecret>
-
-			<h:commandButton value="Entrar" action="#{loginController.ingresar}"></h:commandButton>
-		</h:panelGrid>
-	</h:form>
-
+						<p:commandButton icon="pi pi-save" value="Ingresar"
+							action="#{loginController.ingresar}" update="pnlGridLogin,growl" ></p:commandButton>
+					
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</div>
 </h:body>
 
 </html>
